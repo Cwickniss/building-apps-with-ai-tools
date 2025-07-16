@@ -102,6 +102,10 @@ A more complex application showing:
 1. [Building Your First Web App](tutorials/first-web-app.md)
 2. [Working with APIs Securely](tutorials/api-integration.md)
 3. [Local-First Development](tutorials/local-first-dev.md)
+4. [Claude AI Walkthrough](tutorials/claude-walkthrough.md) - Learn AI-powered development with Claude
+5. [Cursor IDE Guide](tutorials/cursor-walkthrough.md) - Master the AI-enhanced code editor
+6. [Cursor Rules Tutorial](tutorials/cursor-rules-tutorial.md) - Advanced AI consistency with custom rules
+7. [Secure API Integration](tutorials/secure-api-integration.md) - Build secure web apps with API integration
 
 ## Best Practices
 
