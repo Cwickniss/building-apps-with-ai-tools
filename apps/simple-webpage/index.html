@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Welcome | Building Simple Apps with AI Tools</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #111;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5em;
+      color: #000;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #222;
+      margin-top: 0;
+      margin-bottom: 2em;
+    }
+    .line {
+      width: 60px;
+      height: 2px;
+      background: #000;
+      margin: 2em 0;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      p { font-size: 1rem; }
+      .line { width: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <h1 id='main-heading'>Welcome to the Course</h1>
+  <div class='line' id='parallax-line'></div>
+  <p><strong>Building Simple Apps with AI Tools</strong></p>
+  <button id='tip-btn' aria-label='Show an AI tip' style='padding:0.5em 1em; font-size:1rem; border-radius:6px; border:none; background:#0074d9; color:#fff; cursor:pointer; margin-bottom:1em;'>Show AI Tip</button>
+  <div id='ai-tip' style='display:none; margin-top:1em; font-size:1.1rem; color:#0074d9;'></div>
+  <script>
+    'use strict';
+    // Fade-in effect for all elements
+    document.body.style.opacity = 0;
+    document.body.style.transition = 'opacity 1.2s';
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => { document.body.style.opacity = 1; }, 100);
+    });
+
+    // Animated typing effect for heading
+    const heading = document.getElementById('main-heading');
+    const fullText = heading.textContent;
+    heading.textContent = '';
+    let i = 0;
+    function typeChar() {
+      if (i < fullText.length) {
+        heading.textContent += fullText[i];
+        i++;
+        setTimeout(typeChar, 60);
+      }
+    }
+    setTimeout(typeChar, 400);
+
+    // Background color animation
+    let hue = 0;
+    setInterval(() => {
+      hue = (hue + 0.2) % 360;
+      document.body.style.background = `hsl(${hue}, 100%, 98%)`;
+    }, 30);
+
+    // AI tips
+    const tips = [
+      'Tip: Use AI to automate repetitive tasks and save time!',
+      'Did you know? AI can help you write better code with smart suggestions.',
+      'Try using AI tools to generate creative ideas for your next project.',
+      'AI can help you debug code by explaining errors in plain English.',
+      'Explore local-first apps for privacy and offline access!'
+    ];
+    const tipBtn = document.getElementById('tip-btn');
+    const tipDiv = document.getElementById('ai-tip');
+    let lastTip = -1;
+    tipBtn.addEventListener('click', () => {
+      let idx;
+      do { idx = Math.floor(Math.random() * tips.length); } while (idx === lastTip);
+      lastTip = idx;
+      tipDiv.textContent = tips[idx];
+      tipDiv.style.display = 'block';
+      tipDiv.style.opacity = 0;
+      tipDiv.style.transition = 'opacity 0.6s';
+      setTimeout(() => { tipDiv.style.opacity = 1; }, 50);
+    });
+
+    // Parallax effect on the line divider
+    const line = document.getElementById('parallax-line');
+    document.addEventListener('mousemove', (e) => {
+      const percent = (e.clientX / window.innerWidth - 0.5) * 2;
+      line.style.transform = `translateX(${percent * 20}px)`;
+    });
+    document.addEventListener('mouseleave', () => {
+      line.style.transform = 'translateX(0)';
+    });
+  </script>
+</body>
+</html> 

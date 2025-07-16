@@ -4,14 +4,14 @@ This tutorial provides a comprehensive guide to using Cursor IDE, an AI-enhanced
 
 ## Cursor Walkthrough Checklist
 
-- [ ] Chat Interface
+- [x] Chat Interface
   - Three modes available: Ask, Edit, and Agent
-- [ ] Quick Agent Access
+- [x] Quick Agent Access
   - Use Ctrl+I to directly enter agent mode
 - [x] Global Rules Configuration
   - Set up Cursor global rules for AI behavior
-- [ ] Custom Rules
-  - Create .cursorrules files for project-specific AI behavior
+- [x] Custom Rules
+  - Create project rules files (.mdc)
 - [ ] Context Integration
   - Use @ symbol for including context in chat and referencing between rules
 - [ ] Sidebar Navigation
