@@ -129,5 +129,5 @@ Globs: **/*.{html,js}
 
 description:
 globs:
-alwaysApply: false
+alwaysApply: true
 ---
