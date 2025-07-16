@@ -1,0 +1,115 @@
+# Cursor Rules Demo - Educational Project
+
+## About This File
+This .cursorrules file demonstrates best practices for configuring Cursor AI assistance in your projects. It serves as both a working configuration and a teaching example.
+
+## Project Type: Educational Web Application
+Building simple, practical web applications for learning purposes.
+
+## Key Principles
+1. **Clarity over Cleverness** - Code should be immediately understandable
+2. **Progressive Enhancement** - Start simple, add features incrementally  
+3. **Explicit over Implicit** - Show all steps, avoid magic
+4. **Learn by Doing** - Every line should teach something
+
+## Code Standards
+
+### HTML
+- Semantic HTML5 with educational comments
+- Mobile-first responsive design
+- Accessibility from the start (ARIA labels, alt text)
+- Example:
+  ```html
+  <!-- Navigation helps users move between pages -->
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+  ```
+
+### CSS
+- Use descriptive class names (.user-profile-card not .upc)
+- CSS custom properties for easy customization
+- Comment complex layouts
+- Example:
+  ```css
+  /* Color scheme using CSS variables for easy theming */
+  :root {
+    --primary-color: #007bff;
+    --text-color: #333;
+    --background-color: #fff;
+  }
+  ```
+
+### JavaScript
+- ES6+ with explanatory comments
+- Descriptive function and variable names
+- Error handling with user-friendly messages
+- Example:
+  ```javascript
+  // Save user preferences to browser storage
+  function saveUserPreferences(preferences) {
+    try {
+      localStorage.setItem('userPrefs', JSON.stringify(preferences));
+      showMessage('Preferences saved successfully!');
+    } catch (error) {
+      showMessage('Unable to save preferences. Please try again.');
+      console.error('Storage error:', error);
+    }
+  }
+  ```
+
+## Security Rules
+- NO API keys in frontend code
+- Validate ALL user inputs
+- Use HTTPS for external requests
+- Sanitize before displaying user content
+- Store sensitive data only on secure backends
+
+## File Structure
+Keep it simple and organized:
+```
+project/
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+└── .cursorrules
+```
+
+## When Writing Code
+1. Start with the simplest working version
+2. Add one feature at a time
+3. Test each addition before moving on
+4. Include helpful error messages
+5. Comment the "why" not just the "what"
+
+## Common Patterns to Use
+
+### Local Storage Helper
+```javascript
+const storage = {
+  save: (key, data) => localStorage.setItem(key, JSON.stringify(data)),
+  load: (key) => JSON.parse(localStorage.getItem(key) || 'null'),
+  remove: (key) => localStorage.removeItem(key)
+};
+```
+
+### User-Friendly Fetch
+```javascript
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Network response failed');
+    return await response.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return { error: 'Unable to load data. Please check your connection.' };
+  }
+}
+```
+
+## Remember
+We're building tools for learning and personal use, not production applications. Focus on understanding and functionality over optimization.

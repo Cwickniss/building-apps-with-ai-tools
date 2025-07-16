@@ -1,0 +1,53 @@
+{
+  "title": "Web Development Basics",
+  "description": "Test your knowledge of web development fundamentals",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "What does HTML stand for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "High Tech Modern Language",
+        "Hyper Transfer Markup Language",
+        "Hybrid Text Making Language"
+      ],
+      "correctAnswer": "Hyper Text Markup Language",
+      "explanation": "HTML (Hyper Text Markup Language) is the standard markup language for creating web pages."
+    },
+    {
+      "id": "q2",
+      "type": "true-false",
+      "question": "CSS is used for styling web pages.",
+      "correctAnswer": true,
+      "explanation": "CSS (Cascading Style Sheets) is used to style and layout web pages."
+    },
+    {
+      "id": "q3",
+      "type": "text",
+      "question": "What programming language is primarily used for client-side web interactivity?",
+      "correctAnswer": "JavaScript",
+      "explanation": "JavaScript is the primary language used for adding interactivity to web pages on the client side."
+    },
+    {
+      "id": "q4",
+      "type": "multiple-choice",
+      "question": "Which of these is NOT a valid CSS selector?",
+      "options": [
+        "#myId",
+        ".myClass",
+        "@myElement",
+        ":hover"
+      ],
+      "correctAnswer": "@myElement",
+      "explanation": "@myElement is not a valid CSS selector. Valid selectors include ID selectors (#), class selectors (.), and pseudo-classes (:)."
+    },
+    {
+      "id": "q5",
+      "type": "true-false",
+      "question": "HTTP is a secure protocol by default.",
+      "correctAnswer": false,
+      "explanation": "HTTP is not secure by default. HTTPS is the secure version of HTTP that uses encryption."
+    }
+  ]
+} 

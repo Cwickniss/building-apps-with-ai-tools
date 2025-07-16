@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App v2</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Initial Screen -->
+  <div id="initial-screen" class="screen active">
+    <h1>Quiz App</h1>
+    <div class="controls">
+      <input type="file" id="quiz-file" accept=".json" class="file-input">
+      <label for="quiz-file" class="button">Import Quiz File</label>
+      <button id="start-quiz" class="button" disabled>Start Quiz</button>
+    </div>
+  </div>
+
+  <!-- Question Screen -->
+  <div id="question-screen" class="screen">
+    <div class="quiz-header">
+      <h2 id="quiz-title"></h2>
+      <div class="progress">Question <span id="current-question">1</span> of <span id="total-questions">0</span></div>
+    </div>
+    
+    <div class="question-container">
+      <p id="question-text"></p>
+      
+      <!-- Multiple Choice Options -->
+      <div id="multiple-choice" class="answer-container">
+        <div class="options-grid">
+          <!-- Options will be dynamically inserted here -->
+        </div>
+      </div>
+
+      <!-- Text Input -->
+      <div id="text-input" class="answer-container">
+        <input type="text" id="text-answer" placeholder="Type your answer...">
+      </div>
+
+      <!-- True/False -->
+      <div id="true-false" class="answer-container">
+        <button class="true-false-btn" data-value="true">True</button>
+        <button class="true-false-btn" data-value="false">False</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="submit-answer" class="button">Submit Answer</button>
+    </div>
+  </div>
+
+  <!-- Feedback Screen -->
+  <div id="feedback-screen" class="screen">
+    <div class="feedback-container">
+      <h2>Answer Feedback</h2>
+      <div id="feedback-message"></div>
+      <div id="correct-answer"></div>
+      <div id="explanation"></div>
+    </div>
+    <div class="controls">
+      <button id="next-question" class="button">Next Question</button>
+    </div>
+  </div>
+
+  <!-- Results Screen -->
+  <div id="results-screen" class="screen">
+    <h2>Quiz Results</h2>
+    <div class="score-container">
+      <p>Score: <span id="final-score">0</span>/<span id="total-score">0</span></p>
+    </div>
+    
+    <div class="review-container">
+      <h3>Question Review</h3>
+      <div id="questions-review"></div>
+    </div>
+
+    <div class="export-container">
+      <button id="export-csv" class="button">Export as CSV</button>
+      <button id="export-anki" class="button">Export as Anki Flashcards</button>
+    </div>
+
+    <div class="controls">
+      <button id="retry-quiz" class="button">Try Again</button>
+      <button id="load-new-quiz" class="button">Load New Quiz</button>
+    </div>
+  </div>
+
+  <!-- Scripts - Load in correct order with defer -->
+  <script src="js/quizLoader.js" defer></script>
+  <script src="js/questionHandler.js" defer></script>
+  <script src="js/exportManager.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html> 

@@ -1,0 +1,52 @@
+# # Cursor Rules - Introduction
+# # This file defines guidelines and preferences for AI assistance in this project
+
+# # Project Structure
+# # Maintains the consistent organization of code
+# structure:
+#   - apps: Contains complete application examples
+#   - tutorials: Step-by-step learning materials
+#   - resources: Additional helpful files and links
+
+# # Coding Style
+# style:
+#   indentation: 2 spaces
+#   maxLineLength: 80
+#   quoteMark: single
+#   semicolons: always
+
+# # Architecture Patterns
+# architecture:
+#   - Separate data from logic
+#   - Use modular component structure
+#   - Implement proper error handling
+#   - Follow accessibility guidelines
+
+# # Security Guidelines
+# security:
+#   - Never expose API keys in frontend code
+#   - Use environment variables for secrets
+#   - Implement backend proxies for API calls
+#   - Always use HTTPS
+
+# # File Organization
+# files:
+#   html: Semantic markup, minimal inline styles
+#   css: Use consistent naming conventions
+#   js: Follow ES6+ standards
+
+# # Project-Specific Terminology
+# terminology:
+#   - "local-first": Applications that prioritize local data storage
+#   - "AI assistance": Using Claude or Cursor to help with development
+#   - "API proxy": A backend service that securely handles API requests
+
+# # Custom Prompt Enhancement
+# prompt:
+#   focus: Building simple, useful web applications
+#   audience: Developers learning to use AI tools
+#   priorities:
+#     - Clear, readable code
+#     - Educational value
+#     - Security best practices
+#     - Practical utility

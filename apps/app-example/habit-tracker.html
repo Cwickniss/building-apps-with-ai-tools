@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --secondary: #2196F3;
+      --background: #f5f5f5;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --border: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .habits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .habit-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .habit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .habit-name {
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .completion-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .completion-circle.completed {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .streak {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-top: 15px;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      background: var(--border);
+    }
+
+    .calendar-day.completed {
+      background: var(--primary);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Habit Tracker</h1>
+      <button class="btn" onclick="showAddHabitModal()">+ New Habit</button>
+    </header>
+
+    <div class="habits-grid" id="habitsGrid"></div>
+  </div>
+
+  <div class="modal" id="habitModal">
+    <div class="modal-content">
+      <h2 id="modalTitle">New Habit</h2>
+      <form id="habitForm" onsubmit="handleHabitSubmit(event)">
+        <div class="form-group">
+          <label for="habitName">Habit Name</label>
+          <input type="text" id="habitName" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="health">Health</option>
+            <option value="productivity">Productivity</option>
+            <option value="learning">Learning</option>
+            <option value="mindfulness">Mindfulness</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn" onclick="hideModal()">Cancel</button>
+          <button type="submit" class="btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Data management
+    let habits = JSON.parse(localStorage.getItem('habits')) || [];
+    let editingHabitId = null;
+
+    // DOM Elements
+    const habitsGrid = document.getElementById('habitsGrid');
+    const habitModal = document.getElementById('habitModal');
+    const habitForm = document.getElementById('habitForm');
+    const modalTitle = document.getElementById('modalTitle');
+
+    // Initialize app
+    function init() {
+      renderHabits();
+    }
+
+    // Render functions
+    function renderHabits() {
+      habitsGrid.innerHTML = '';
+      habits.forEach(habit => {
+        const card = createHabitCard(habit);
+        habitsGrid.appendChild(card);
+      });
+    }
+
+    function createHabitCard(habit) {
+      const card = document.createElement('div');
+      card.className = 'habit-card';
+      
+      const today = new Date().toISOString().split('T')[0];
+      const isCompleted = habit.completedDates.includes(today);
+      const streak = calculateStreak(habit);
+
+      card.innerHTML = `
+        <div class="habit-header">
+          <div class="habit-name">${habit.name}</div>
+          <div class="completion-circle ${isCompleted ? 'completed' : ''}" 
+               onclick="toggleCompletion('${habit.id}')">
+            ${isCompleted ? '✓' : ''}
+          </div>
+        </div>
+        <div class="streak">Current streak: ${streak} days</div>
+        <div class="calendar">
+          ${generateCalendarDays(habit)}
+        </div>
+        <div class="card-actions">
+          <button class="btn" onclick="editHabit('${habit.id}')">Edit</button>
+          <button class="btn" onclick="deleteHabit('${habit.id}')">Delete</button>
+        </div>
+      `;
+
+      return card;
+    }
+
+    function generateCalendarDays(habit) {
+      const days = [];
+      const today = new Date();
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0];
+        const isCompleted = habit.completedDates.includes(dateStr);
+        days.push(`<div class="calendar-day ${isCompleted ? 'completed' : ''}"></div>`);
+      }
+      return days.join('');
+    }
+
+    // Event handlers
+    function showAddHabitModal() {
+      editingHabitId = null;
+      modalTitle.textContent = 'New Habit';
+      habitForm.reset();
+      habitModal.classList.add('active');
+    }
+
+    function hideModal() {
+      habitModal.classList.remove('active');
+    }
+
+    function handleHabitSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('habitName').value;
+      const category = document.getElementById('category').value;
+
+      if (editingHabitId) {
+        // Update existing habit
+        habits = habits.map(h => 
+          h.id === editingHabitId 
+            ? { ...h, name, category }
+            : h
+        );
+      } else {
+        // Create new habit
+        const newHabit = {
+          id: Date.now().toString(),
+          name,
+          category,
+          completedDates: [],
+          createdAt: new Date().toISOString().split('T')[0]
+        };
+        habits.push(newHabit);
+      }
+
+      saveHabits();
+      renderHabits();
+      hideModal();
+    }
+
+    function toggleCompletion(habitId) {
+      const today = new Date().toISOString().split('T')[0];
+      habits = habits.map(habit => {
+        if (habit.id === habitId) {
+          const completedDates = habit.completedDates.includes(today)
+            ? habit.completedDates.filter(d => d !== today)
+            : [...habit.completedDates, today];
+          return { ...habit, completedDates };
+        }
+        return habit;
+      });
+      saveHabits();
+      renderHabits();
+    }
+
+    function editHabit(habitId) {
+      const habit = habits.find(h => h.id === habitId);
+      if (!habit) return;
+
+      editingHabitId = habitId;
+      modalTitle.textContent = 'Edit Habit';
+      document.getElementById('habitName').value = habit.name;
+      document.getElementById('category').value = habit.category;
+      habitModal.classList.add('active');
+    }
+
+    function deleteHabit(habitId) {
+      if (!confirm('Are you sure you want to delete this habit?')) return;
+      
+      habits = habits.filter(h => h.id !== habitId);
+      saveHabits();
+      renderHabits();
+    }
+
+    // Utility functions
+    function calculateStreak(habit) {
+      const today = new Date().toISOString().split('T')[0];
+      let streak = 0;
+      let currentDate = new Date(today);
+
+      while (habit.completedDates.includes(currentDate.toISOString().split('T')[0])) {
+        streak++;
+        currentDate.setDate(currentDate.getDate() - 1);
+      }
+
+      return streak;
+    }
+
+    function saveHabits() {
+      localStorage.setItem('habits', JSON.stringify(habits));
+    }
+
+    // Initialize the app
+    init();
+  </script>
+</body>
+</html> 

@@ -1,0 +1,60 @@
+# Modern Project Rules Example
+# This shows the new recommended approach using .cursor/rules
+
+[Always]
+You are assisting with an educational project for barefoot developers.
+Focus on clarity, simplicity, and learning value in all code generation.
+
+[Code Style]
+- Use 2-space indentation
+- Prefer const/let over var
+- Use template literals for string concatenation
+- Add explanatory comments for learning purposes
+- Keep line length under 80 characters
+
+[Architecture]
+- Start with working minimal examples
+- Use progressive enhancement
+- Separate concerns (HTML structure, CSS styling, JS behavior)
+- Implement local-first data storage
+- Handle errors gracefully with user-friendly messages
+
+[Security]
+- Never expose API keys in frontend code
+- Always validate user input
+- Use environment variables for sensitive data
+- Implement proper CORS handling
+- Sanitize dynamic content before display
+
+[Educational Focus]
+- Every code example should teach a concept
+- Use descriptive variable and function names
+- Include alternative approaches where relevant
+- Add links to documentation for further learning
+- Show both the simple and advanced ways
+
+[Testing]
+- Include console.log statements for debugging
+- Create manual test scenarios
+- Test offline functionality
+- Verify mobile responsiveness
+- Check accessibility features
+
+[Auto Attached]
+When working on HTML files:
+- Use semantic HTML5 elements
+- Include proper meta tags
+- Add ARIA labels for accessibility
+- Structure content logically
+
+When working on CSS files:
+- Use CSS custom properties
+- Implement mobile-first design
+- Include vendor prefixes where needed
+- Comment complex selectors
+
+When working on JavaScript files:
+- Use modern ES6+ syntax
+- Implement proper error handling
+- Add JSDoc comments
+- Follow functional programming principles where appropriate
