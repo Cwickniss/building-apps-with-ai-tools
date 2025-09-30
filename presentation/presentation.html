@@ -141,14 +141,23 @@ _The goal isn't to turn you into a professional developer, but to give you the t
 
 ## Target Audience
 
-- Technically curious non-developers
-- Low-code/no-code tool power users
-- Professionals looking to solve specific problems
-- Community builders with specific software needs
+- **Technically curious** non-developers
 
 --
 
-If you've ever thought, <span class="highlight">"I wish there was an app for that,"</span> this course is for you.
+- Low-code/no-code tool **power users**
+
+--
+
+- Professionals looking to **solve specific problems**
+
+--
+
+- **Community builders** with specific software needs
+
+--
+
+If you've ever thought, *"I wish there was an app for that."* this course is for you.
 
 ---
 
@@ -157,7 +166,9 @@ If you've ever thought, <span class="highlight">"I wish there was an app for tha
 To participate fully in this course, you'll need:
 
 - Computer with browser and internet connection
+
 - Free accounts for Cursor IDE and Claude
+
 - Optional: GitHub account
 
 --
@@ -169,6 +180,29 @@ All the tools we'll use have **free tiers** sufficient for our coursework.
 class: center, middle, section-title
 
 # Motivation
+
+---
+class: center, middle
+
+<div style="display: flex; justify-content: center; margin: 2rem 0;">
+  <iframe width="600" height="400"
+    src="https://www.youtube.com/embed/qo5m92-9_QI"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    aria-label="Maggie Appleton YouTube video"></iframe>
+</div>
+
+---
+class: center, middle
+
+<div style="text-align: center;margin-top: 70px;">
+  <img src="../assets/simon-willison-on-single-file-html-apps.png" width="800">
+  <p style="font-size: 14px; color: gray;">
+    <a href="" target="_blank" style="color: gray; text-decoration: underline;">Simon Willison Twitter</a>
+  </p>
+</div>
 
 ---
 
@@ -237,10 +271,22 @@ class: center, middle, section-title
 
 Our development stack consists of five key elements:
 
-1. **Large Language Models** (Claude, GPT)
+1. **Large Language Models** (**Claude**, ChatGPT, Gemini...)
+
+--
+
 2. **AI-enhanced IDEs** (Cursor)
+
+--
+
 3. **Frontend technologies** (HTML, CSS, JavaScript)
-4. **Storage options** (local-first approach)
+
+--
+
+4. **Storage options** (everything stored locally)
+
+--
+
 5. **Deployment methods**
 
 --
@@ -298,9 +344,29 @@ class: center, middle
 # Q&A & Break
 
 ---
+class: center, middle
+# Cursor IDE Recap
 
+---
+class: center, middle
+Build me a welcome page for this course I'm working on (presentation slides are in @presentation.html )
+
+Make the webpage in pure .html and javscript within a single file, make it sleak, modern minimalistic design and some cool functional interactive features.
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+  <img src="../assets/2025-09-30-12-40-58.png" width="100%">
+</div>
+
+---
+class: center, middle
+
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+  <img src="../assets/2025-09-30-12-43-27.png" width="100%">
+</div>
+
+---
 
 # Cursor IDE Recap
+
 
 - AI-enhanced code editor
 
@@ -310,29 +376,51 @@ class: center, middle
 
 --
 
-- Cursorrules mechanism for consistent development
+- Cursor rules for consistent development
+
+  - You can generate automatically with `/Generate Cursor Rules`
 
 --
 
 - File referencing with @ symbol for context
 
---
+---
+class: center, middle
+
+# Prompt for a welcome page to this course
 
 ---
 
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+  <img src="../assets/2025-09-30-13-00-53.png" width="600">
+</div>
 
+---
+class: center, middle
+
+# [Welcome Page Slide](../apps/welcome-page/index.html)
+
+---
 class: center, middle, section-title
 
 # Workflow for Building Apps
 
 ---
+class: center, middle
 
-# Basic Workflow Cycle
+<div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+  <img src="../assets/2025-03-17-16-26-37.png" width="600">
+</div>
 
-<img src="./2025-03-17-16-26-37.png" width=80%; alt="Visual workflow diagram showing the barefoot developer process" />
+---
+class: center, middle
 
-Our approach is **iterative and AI-collaborative**,
-focusing on continuous refinement based on user feedback.
+<blockquote style="font-size:1.3rem; color:#333; border-left: 4px solid #2b7a78; margin: 0 auto; padding: 1.2rem 1.5rem; background: #f6fafb; max-width: 600px;">
+<h3>
+  Our approach is <strong>iterative and AI-collaborative</strong>,<br>
+  focusing on continuous refinement based on user feedback.
+</h3>
+</blockquote>
 
 ---
 class: center, middle
@@ -358,17 +446,19 @@ class: center, middle
 
 # Q&A & Break
 
+
+
 ---
 class: center, middle
 
 # Notes on Best Practices
 
 ---
-# Problem <img src="2025-03-17-16-54-49.png" height="40px" alt="Lamp icon" style="vertical-align: middle; margin-left: 15px;" />
+# Problem 
 
 --
 
-## Brainstorm with Claude <img src="./2025-03-17-16-55-22.png" width="40px" alt="Claude logo" style="vertical-align: middle; margin-left: 10px;" />
+## Brainstorm with Claude <img src="../assets/2025-03-17-16-55-22.png" width="40px" alt="Claude logo" style="vertical-align: middle; margin-left: 10px;" />
 
 - Explore problem space
 - Generate initial ideas
@@ -380,62 +470,103 @@ class: center, middle
 
 - <div style="display: flex; align-items: center; margin-bottom: 10px;">
   <span>Perplexity</span>
-  <img src="./2025-03-17-16-55-38.png" width="30px" alt="Perplexity logo" style="margin-left: 10px;" />
+  <img src="../assets/2025-03-17-16-55-38.png" width="30px" alt="Perplexity logo" style="margin-left: 10px;" />
 </div>
 
 - <div style="display: flex; align-items: center; margin-bottom: 10px;">
   <span>ChatGPT</span>
-  <img src="./2025-03-17-16-55-46.png" width="30px" alt="ChatGPT logo" style="margin-left: 10px;" />
+  <img src="../assets/2025-03-17-16-55-46.png" width="30px" alt="ChatGPT logo" style="margin-left: 10px;" />
 </div>
 
 - <div style="display: flex; align-items: center;">
   <span>Gemini</span>
-  <img src="./2025-03-17-16-55-53.png" width="30px" alt="Gemini logo" style="margin-left: 10px;" />
+  <img src="../assets/2025-03-17-16-55-53.png" width="30px" alt="Gemini logo" style="margin-left: 10px;" />
 </div>
 
 ---
 
-# App Flow <img src="./2025-03-17-16-55-22.png" width="40px" alt="Flow diagram icon" style="vertical-align: middle; margin-left: 15px;" />
+# App Flow <img src="../assets/2025-03-17-16-55-22.png" width="40px" alt="Flow diagram icon" style="vertical-align: middle; margin-left: 15px;" />
+
+## Planning 
+
+--
+
+- Use voice mode to communicate faster
+
+--
+
+- The core idea
+
+--
+
+- Essential features
+
+--
+
+- The app flow (pages, navigation, user actions)
 
 --
 
 ## Diagramming Tools
 
-- Use Claude for Diagrams (mermaid) <img src="./2025-03-17-16-55-22.png" width="30px" alt="Claude logo" style="vertical-align: middle; margin-left: 10px;" />
-
 --
 
-- Sketch the raw app flow <img src="./2025-03-17-16-55-22.png" width="30px" alt="Sketch icon" style="vertical-align: middle; margin-left: 10px;" />
+- Sketch the raw app flow <img src="../assets/2025-03-17-16-55-22.png" width="30px" alt="Sketch icon" style="vertical-align: middle; margin-left: 10px;" />
   - Excalidraw
-  - Figma
-  - Other visual tools
+  
+  - Figma (or similar)
+  
+  - Claude to generate mermaid diagrams
 
 ---
 
-# Writing Detailed Spec Docs <img src="./2025-03-17-16-56-27.png" width="40px" alt="Document icon" style="vertical-align: middle; margin-left: 15px;" />
+# Writing Detailed Spec Docs <img src="../assets/2025-03-17-16-56-27.png" width="40px" alt="Document icon" style="vertical-align: middle; margin-left: 15px;" />
 
 --
 
-## Documentation Approaches
+- Write detailed Product Requirements Document files <img src="../assets/2025-03-17-16-56-27.png" width="30px" alt="Document icon" style="vertical-align: middle; margin-left: 10px;" />
 
-- Claude Projects instructions <img src="./2025-03-17-16-55-22.png" width="30px" alt="Claude logo" style="vertical-align: middle; margin-left: 10px;" />
+  - `PRD.md` files
+
+    - Project description + core functionalities
+
+    - File structure
+
+    - Tech stack overview (HTML/JS...)
 
 --
 
-- Write detailed context files <img src="./2025-03-17-16-56-27.png" width="30px" alt="Document icon" style="vertical-align: middle; margin-left: 10px;" />
-  - context.md files
-  - .cursorrules files in Cursor
+- Control Cursor's agents behavior
+
+  - Cursor rules .mdc files
+
+--
+
+  - `AGENTS.md` files in Cursor
+
+--
+
+ - Leverage context with @ symbol for referencing files and/or indexed docs
+
+--
+
+  - Leverage MCP for adding functionality to Cursor's agents
 
 ---
 
 # Build
 
-- Prototype with Claude Artifacts And/OR Claude Projects
+- Prototype with Claude Artifacts
 
 --
 
-- Build through dialog with Cursor in Agentic Mode <img src="./2025-03-17-16-56-27.png" width="40px" alt="Document icon" style="vertical-align: middle; margin-left: 15px;" />
+- Build through dialog with Cursor in Agentic Mode <img src="../assets/2025-03-17-16-56-27.png" width="40px" alt="Document icon" style="vertical-align: middle; margin-left: 15px;" />
 
+---
+
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+  <img src="../assets/andrej-tweet.png" width="60%">
+</div>
 
 ---
 class: center, middle
@@ -481,7 +612,7 @@ Create a simple quiz application that allows users to test their knowledge on va
 CursorRules help maintain consistency in AI-generated code:
 
 ```markdown
-# CursorRules.md
+# `/.cursor/rules`
 
 ## Coding Standards
 - Use camelCase for variables and functions

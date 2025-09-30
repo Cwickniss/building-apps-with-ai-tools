@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Apps with AI Tools - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .typing-text {
+            border-right: 3px solid white;
+            animation: blink 1s infinite;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.5s forwards;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--bg-primary);
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        /* Course Overview */
+        .course-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .overview-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .overview-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .overview-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Course Agenda */
+        .agenda {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+
+        .agenda-item:hover {
+            background: rgba(37, 99, 235, 0.05);
+            padding-left: 1rem;
+        }
+
+        .agenda-number {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .agenda-content {
+            flex: 1;
+        }
+
+        .agenda-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .agenda-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .tool-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Target Audience */
+        .audience-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .audience-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .audience-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .audience-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Instructor Section */
+        .instructor {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .instructor h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .instructor p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                border-color: white;
+            }
+            51%, 100% {
+                border-color: transparent;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .agenda {
+                padding: 2rem 1rem;
+            }
+
+            .instructor {
+                padding: 2rem 1rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">AI Tools Course</div>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#agenda">Agenda</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#instructor">Instructor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="hero-content">
+            <h1 id="typing-title">Building Apps with AI Tools</h1>
+            <p>Learn to create functional web applications using AI assistance. No professional development experience required.</p>
+            <a href="#overview" class="cta-button">Start Learning</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Course Overview -->
+            <section id="overview" class="section fade-in">
+                <h2 class="section-title">Course Overview</h2>
+                <div class="course-overview">
+                    <div class="overview-card">
+                        <h3>🎯 What You'll Learn</h3>
+                        <p>Build functional web applications using AI assistance, create technical specifications efficiently, and develop effective problem-solving approaches.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>🛠️ Tools You'll Use</h3>
+                        <p>Master Claude, Cursor IDE, and modern web technologies to create personal applications that address your specific needs.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>🎓 Perfect For</h3>
+                        <p>Technically curious non-developers, low-code power users, and professionals looking to solve specific problems with custom software.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Agenda -->
+            <section id="agenda" class="section fade-in">
+                <h2 class="section-title">Course Agenda</h2>
+                <div class="agenda">
+                    <div class="agenda-item">
+                        <div class="agenda-number">1</div>
+                        <div class="agenda-content">
+                            <h4>Methodology Notes</h4>
+                            <p>Understanding the presentation, demonstration, recap, and Q&A cycle</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">2</div>
+                        <div class="agenda-content">
+                            <h4>What This Course Is and Is Not</h4>
+                            <p>Setting clear expectations and defining the scope of learning</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">3</div>
+                        <div class="agenda-content">
+                            <h4>Motivation</h4>
+                            <p>Why learn to build apps with AI? Understanding the "barefoot developer" mindset</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">4</div>
+                        <div class="agenda-content">
+                            <h4>AI Tools</h4>
+                            <p>Introduction to Claude, Cursor IDE, and the development stack</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">5</div>
+                        <div class="agenda-content">
+                            <h4>Workflow for Building Apps</h4>
+                            <p>Iterative and AI-collaborative approach to development</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">6</div>
+                        <div class="agenda-content">
+                            <h4>Hands-on: Cursor/Claude Walkthrough</h4>
+                            <p>Live demonstration of AI-assisted development tools</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">7</div>
+                        <div class="agenda-content">
+                            <h4>Hands-on: Building A Simple Webpage</h4>
+                            <p>Create your first application with AI assistance</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">8</div>
+                        <div class="agenda-content">
+                            <h4>Notes on Best Practices</h4>
+                            <p>Essential guidelines for effective AI-assisted development</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">9</div>
+                        <div class="agenda-content">
+                            <h4>Hands-on: Building a Quiz App</h4>
+                            <p>Build an interactive application from specification to completion</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">10</div>
+                        <div class="agenda-content">
+                            <h4>Extending capabilities with APIs</h4>
+                            <p>Learn to integrate external services and data sources</p>
+                        </div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">11</div>
+                        <div class="agenda-content">
+                            <h4>Hands-on: Interactive Live Coding</h4>
+                            <p>Put everything together in a comprehensive coding session</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools Section -->
+            <section id="tools" class="section fade-in">
+                <h2 class="section-title">Core Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🤖</div>
+                        <h4>Claude</h4>
+                        <p>Multi-modal AI assistant for code generation, review, and project management</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">⚡</div>
+                        <h4>Cursor IDE</h4>
+                        <p>AI-enhanced code editor with intelligent suggestions and agentic development</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🌐</div>
+                        <h4>Web Technologies</h4>
+                        <p>HTML, CSS, JavaScript for building modern, responsive applications</p>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">💾</div>
+                        <h4>Local Storage</h4>
+                        <p>Build local-first applications that work without external dependencies</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Target Audience -->
+            <section class="section fade-in">
+                <h2 class="section-title">Perfect For</h2>
+                <div class="audience-list">
+                    <div class="audience-item">
+                        <h4>Technically Curious</h4>
+                        <p>Non-developers who want to explore software creation</p>
+                    </div>
+                    <div class="audience-item">
+                        <h4>Low-Code Power Users</h4>
+                        <p>People comfortable with no-code tools looking to level up</p>
+                    </div>
+                    <div class="audience-item">
+                        <h4>Problem Solvers</h4>
+                        <p>Professionals looking to solve specific problems with custom software</p>
+                    </div>
+                    <div class="audience-item">
+                        <h4>Community Builders</h4>
+                        <p>People with specific software needs for their communities</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instructor Section -->
+            <section id="instructor" class="section fade-in">
+                <div class="instructor">
+                    <h3>Meet Your Instructor</h3>
+                    <p>Lucas Soares - Expert in AI-assisted development and building practical applications</p>
+                    <div class="social-links">
+                        <a href="https://github.com/EnkrateiaLucca/building-apps-with-ai-tools.git" class="social-link">📚 Course Materials</a>
+                        <a href="https://www.linkedin.com/in/lucas-soares-969044167/" class="social-link">🔗 LinkedIn</a>
+                        <a href="https://x.com/LucasEnkrateia" class="social-link">🐦 Twitter/X</a>
+                        <a href="https://www.youtube.com/@automatalearninglab" class="social-link">📺 YouTube</a>
+                        <a href="mailto:lucasenkrateia@gmail.com" class="social-link">📧 Email</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Building Apps with AI Tools. Empowering barefoot developers worldwide.</p>
+        </div>
+    </footer>
+
+    <script>
+        'use strict';
+
+        // Typing animation for the title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.add('typing-text');
+                }
+            }
+            
+            type();
+        }
+
+        // Smooth scrolling for navigation links
+        function initSmoothScrolling() {
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        }
+
+        // Header scroll effect
+        function initHeaderScrollEffect() {
+            const header = document.querySelector('.header');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = 'none';
+                }
+
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Interactive agenda items
+        function initAgendaInteractions() {
+            const agendaItems = document.querySelectorAll('.agenda-item');
+            
+            agendaItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    agendaItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Add a subtle animation
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        }
+
+        // Parallax effect for floating elements
+        function initParallaxEffect() {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                floatingElements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.1;
+                    element.style.transform = `translateY(${rate * speed}px)`;
+                });
+            });
+        }
+
+        // Initialize all features when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start typing animation
+            const titleElement = document.getElementById('typing-title');
+            const titleText = 'Building Apps with AI Tools';
+            typeWriter(titleElement, titleText, 150);
+
+            // Initialize all interactive features
+            initSmoothScrolling();
+            initScrollAnimations();
+            initHeaderScrollEffect();
+            initAgendaInteractions();
+            initParallaxEffect();
+        });
+
+        // Add some CSS for active agenda items
+        const style = document.createElement('style');
+        style.textContent = `
+            .agenda-item.active {
+                background: rgba(37, 99, 235, 0.1) !important;
+                border-left: 4px solid var(--primary-color);
+                padding-left: 1rem;
+            }
+            
+            .agenda-item.active .agenda-number {
+                background: var(--secondary-color);
+                transform: scale(1.1);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,32 +1,38 @@
 ---
 alwaysApply: true
+description: Global Rules for Simple HTML/JS Apps (No Backend)
+globs: **/*.{html,js}
 ---
 
-Description: Global Rules for Simple HTML/JS Apps (No Backend)
-Globs: **/*.{html,js}
-
-# General Guidelines
+# General Guidelines for Simple Web Apps
 
 ## Code Quality
-- Use ES6+ features (let/const, arrow functions)
-- Keep functions short and single-purpose
+- Use ES6+ features (let/const, arrow functions, template literals)
+- Keep functions short and single-purpose (max 20 lines)
 - Use meaningful variable and function names
 - Always handle errors gracefully (try/catch in JS)
 - Keep HTML semantic and accessible
+- Follow the single-file approach for simple apps
 
 ## File Organization
-- Generate a single html that has the html, javascript and .css code all in one.
+- **Single-file apps**: Generate one HTML file with embedded CSS and JavaScript
+- **Multi-file apps**: Use `index.html`, `styles.css`, `script.js` structure
+- **Complex apps**: Organize with subdirectories for `css/`, `js/`, `assets/`
 
 ## HTML Standards
-- Use semantic HTML5 elements (header, main, footer, etc.)
+- Use semantic HTML5 elements (header, main, footer, section, article)
 - Add alt text to all images
 - Use labels for all form inputs
+- Include proper ARIA attributes for accessibility
+- Use proper heading hierarchy (h1, h2, h3...)
 
 ## JavaScript Standards
-- Use strict mode
-- Avoid global variables
+- Use strict mode (`'use strict';`)
+- Avoid global variables (use IIFE or modules)
 - Prefer querySelector/querySelectorAll over older DOM APIs
 - Use event delegation for dynamic elements
+- Implement proper error handling with try/catch blocks
+- Use modern async/await syntax for promises
 
 ## Example of Good Code:
 
@@ -127,7 +133,3 @@ Globs: **/*.{html,js}
 </html>
 
 
-description:
-globs:
-alwaysApply: true
----
